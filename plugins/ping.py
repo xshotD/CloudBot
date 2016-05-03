@@ -49,10 +49,10 @@ def ping(text, reply):
     try:
         pingcmd = subprocess.check_output(args).decode("utf-8")
     except subprocess.CalledProcessError:
-        return "Could not ping host."
+        return "Error: This hostname is not responding to pings."
 
     if re.search("(?:not find host|timed out|unknown host)", pingcmd, re.I):
-        return "Could not ping host."
+        return "Error: This hostname isn't responding to pings."
 
     if os.name == "nt":
         m = re.search(win_ping_regex, pingcmd)
